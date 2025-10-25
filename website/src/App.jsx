@@ -7,6 +7,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Toaster } from "sonner";
+import { AnimatePresence, motion } from "framer-motion";
+import { Package, Truck } from "lucide-react";
 
 // Layout
 import Navbar from "./components/nav";
@@ -38,6 +40,168 @@ function ScrollToTop() {
 
   return null;
 }
+
+// Loading Screen Component with Biddulphs Branding
+const LoadingScreen = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-green-900 z-50 flex items-center justify-center"
+    >
+      <div className="text-center">
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="relative inline-block"
+        >
+          {/* Logo Container */}
+          <div className="relative flex items-center justify-center mb-6">
+            {/* Animated Truck Icon */}
+            <motion.div
+              animate={{
+                x: [0, 10, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute -left-20 text-yellow-400"
+            >
+              <Truck size={40} strokeWidth={1.5} />
+            </motion.div>
+
+            {/* Animated Package Icon */}
+            <motion.div
+              animate={{
+                y: [0, -5, 0],
+                rotate: [0, 5, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.3,
+              }}
+              className="absolute -right-20 text-yellow-400"
+            >
+              <Package size={36} strokeWidth={1.5} />
+            </motion.div>
+
+            {/* Company Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="px-12"
+            >
+              <img 
+                src="/logo.svg" 
+                alt="Biddulphs Logo" 
+                className="h-24 w-auto filter drop-shadow-2xl"
+              />
+            </motion.div>
+          </div>
+
+          {/* Glow effect */}
+          <motion.div
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              scale: [0.9, 1.1, 0.9],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute inset-0 -z-10 blur-3xl"
+          >
+            <div className="w-full h-full bg-gradient-to-r from-emerald-500 via-green-500 to-yellow-500 opacity-40 rounded-full" />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mt-12"
+        >
+          {/* Loading dots */}
+          <div className="flex items-center justify-center space-x-2">
+            {[0, 0.2, 0.4].map((delay, index) => (
+              <motion.div
+                key={index}
+                animate={{
+                  opacity: [0.3, 1, 0.3],
+                  scale: [0.8, 1.3, 0.8],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: delay,
+                  ease: "easeInOut",
+                }}
+                className="w-3 h-3 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-lg"
+              />
+            ))}
+          </div>
+          <motion.p
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="text-gray-300 text-sm mt-6 font-medium tracking-wider"
+          >
+            Loading your moving solution...
+          </motion.p>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Page Wrapper for transitions
+const PageWrapper = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  return (
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <LoadingScreen key="loading" />
+      ) : (
+        <motion.div
+          key="content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 function App() {
   return (
@@ -122,31 +286,33 @@ function App() {
           }
         `}</style>
         <Navbar />
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/local-moves" element={<LocalMoves />} />
-            <Route
-              path="/services/international-moves"
-              element={<InternationalMoves />}
-            />
-            <Route
-              path="/services/business-moves"
-              element={<BusinessMoves />}
-            />
-            <Route path="/services/storage" element={<Storage />} />
-            <Route path="/services/packing" element={<Packing />} />
-            <Route path="/services/insurance" element={<PackingInsurance />} />
-            <Route path="/services/freight" element={<BiddulphsFreight />} />
-            <Route path="/delivery-network" element={<DeliveryNetwork />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/get-quote" element={<GetQuote />} />
-          </Routes>
-        </main>
+        <PageWrapper>
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/local-moves" element={<LocalMoves />} />
+              <Route
+                path="/services/international-moves"
+                element={<InternationalMoves />}
+              />
+              <Route
+                path="/services/business-moves"
+                element={<BusinessMoves />}
+              />
+              <Route path="/services/storage" element={<Storage />} />
+              <Route path="/services/packing" element={<Packing />} />
+              <Route path="/services/insurance" element={<PackingInsurance />} />
+              <Route path="/services/freight" element={<BiddulphsFreight />} />
+              <Route path="/delivery-network" element={<DeliveryNetwork />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/get-quote" element={<GetQuote />} />
+            </Routes>
+          </main>
+        </PageWrapper>
         <Footer />
         <Toaster position="top-right" richColors />
       </div>
