@@ -6,6 +6,8 @@ import {
   Package,
   Shield,
   Award,
+  Phone,
+  Mail,
   TrendingUp,
   Users,
   ArrowRight,
@@ -20,11 +22,24 @@ import { GiTruck } from "react-icons/gi";
 import { PiSuitcaseSimpleLight } from "react-icons/pi";
 import { PiShippingContainerLight } from "react-icons/pi";
 import { GrSecure } from "react-icons/gr";
+import { IoLogoWhatsapp } from "react-icons/io";
+import { PiPhoneCallThin } from "react-icons/pi";
+import { GoMail } from "react-icons/go";
 
 import Chip from "@mui/material/Chip";
 import EnhancedHeroSection from "./components/hero";
-import { WhyChooseUsAsymmetric, WhyChooseUsCardStyle, WhyChooseUsFloating, WhyChooseUsSplitPanel } from "./components/whileChooseUs";
-import { TestimonialsWithProfilesSide, TestimonialsCarouselStyle, TestimonialsWithCustomImages, TestimonialsModernCards } from "./components/testimonials";
+import {
+  WhyChooseUsAsymmetric,
+  WhyChooseUsCardStyle,
+  WhyChooseUsFloating,
+  WhyChooseUsSplitPanel,
+} from "./components/whileChooseUs";
+import {
+  TestimonialsWithProfilesSide,
+  TestimonialsCarouselStyle,
+  TestimonialsWithCustomImages,
+  TestimonialsModernCards,
+} from "./components/testimonials";
 
 export default function Home() {
   const services = [
@@ -119,6 +134,17 @@ export default function Home() {
       gradient: "from-white/96 to-amber-50/96",
     },
   ];
+
+  const handleAction = (action) => {
+    if (action === "call") {
+      window.location.href = "tel:+263785948128";
+    } else if (action === "email") {
+      window.location.href = "mailto:info@biddulphs.co.zw";
+    } else if (action === "whatsapp") {
+      window.location.href =
+        "https://wa.me/263785948128?text=Hello%20Biddulphs%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.";
+    }
+  };
 
   const whyChooseUs = [
     {
@@ -294,9 +320,7 @@ export default function Home() {
 
                 {/* Decorative Globe Pattern */}
                 <div className="absolute inset-0 opacity-5">
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-
-                  </div>
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
                 </div>
 
                 <div className="relative h-full p-8 flex flex-col justify-between">
@@ -585,6 +609,28 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Floating Action Elements */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <button
+          className="group bg-gradient-to-r from-green-400 via-green-600 to-primary-dark hover:bg-green-300 text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+          onClick={() => handleAction("whatsapp")}
+        >
+          <IoLogoWhatsapp className="w-6 h-6 group-hover:rotate-12 transition-transform text-white" />
+        </button>
+        <button
+          className="group bg-gradient-to-r from-green-400 via-green-600 to-primary-dark hover:bg-green-700 text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+          onClick={() => handleAction("call")}
+        >
+          <Phone className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+        </button>
+        <button
+          className="group bg-gradient-to-r from-green-400 via-green-600 to-primary-dark hover:bg-blue-700 text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+          onClick={() => handleAction("email")}
+        >
+          <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+        </button>
+      </div>
 
       {/* Why Choose Us Section */}
       <WhyChooseUsCardStyle />

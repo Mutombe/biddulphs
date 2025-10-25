@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Mail, Search } from 'lucide-react';
+import { CiMenuFries } from "react-icons/ci";
+import { MdOutlineCloseFullscreen } from "react-icons/md";
+import { TbMenu3 } from "react-icons/tb";
+import SearchModal from './search';
+import { CiSearch } from "react-icons/ci";
+
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -46,6 +53,9 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Search Modal */}
+      <SearchModal isOpen={showSearch} onClose={() => setShowSearch(false)} />
+
       {/* Top Info Bar */}
       <div className="bg-primary-dark text-white py-2 px-4 sm:px-6 lg:px-8 hidden md:block">
         <div className="container-custom flex justify-between items-center text-sm">
@@ -150,21 +160,46 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <Link
-              to="/get-quote"
-              className="hidden lg:block btn-primary"
-            >
-              Get A Quote
-            </Link>
+            {/* Search & CTA Button */}
+            <div className="hidden lg:flex items-center gap-3">
+              {/* Search Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowSearch(true)}
+                className="p-2.5 rounded-lg hover:bg-gray-100 transition-colors group"
+                aria-label="Search"
+              >
+                <CiSearch className="w-5 h-5 text-gray-600 group-hover:text-primary-green transition-colors" />
+              </motion.button>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-primary-dark hover:bg-gray-100 transition-colors"
-            >
-              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
+              {/* Get Quote Button */}
+              <Link
+                to="/get-quote"
+                className="btn-primary"
+              >
+                Get A Quote
+              </Link>
+            </div>
+
+            {/* Mobile Search and Menu Buttons */}
+            <div className="lg:hidden flex items-center gap-2">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowSearch(true)}
+                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                aria-label="Search"
+              >
+                <Search className="w-5 h-5 text-primary-dark" />
+              </motion.button>
+
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-lg text-primary-dark hover:bg-gray-100 transition-colors"
+              >
+                {isMobileMenuOpen ? <X size={28} /> : <TbMenu3 size={28} />}
+              </button>
+            </div>
           </div>
         </div>
 
