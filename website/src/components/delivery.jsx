@@ -1,81 +1,94 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Truck, Clock, CheckCircle, ArrowRight, Package } from 'lucide-react';
-import Chip from '@mui/material/Chip';
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  MapPin,
+  Truck,
+  Clock,
+  CheckCircle,
+  ArrowRight,
+  Package,
+} from "lucide-react";
+import Chip from "@mui/material/Chip";
 
 export default function DeliveryNetwork() {
-  const [selectedFrequency, setSelectedFrequency] = useState('6times');
+  const [selectedFrequency, setSelectedFrequency] = useState("6times");
 
   const deliverySchedule6Times = [
-    { location: 'Bindura', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Bulawayo', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Chegutu', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Chivhu', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Glendale', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Gweru', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Kadoma', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Kwekwe', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Marondera', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Masvingo', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Mount Darwin', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Murehwa', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Mutare', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Rusape', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
-    { location: 'Shamva', days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] },
+    { location: "Bindura", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Bulawayo", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Chegutu", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Chivhu", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Glendale", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Gweru", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Kadoma", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Kwekwe", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Marondera", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Masvingo", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    {
+      location: "Mount Darwin",
+      days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    },
+    { location: "Murehwa", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Mutare", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Rusape", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+    { location: "Shamva", days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
   ];
 
   const deliverySchedule3Times = [
-    { location: 'Gokwe', days: ['Sun', 'Mon', 'Wed', 'Sat'] },
-    { location: 'Shurugwi', days: ['Sun', 'Mon', 'Wed', 'Sat'] },
-    { location: 'Zvishavane', days: ['Sun', 'Mon', 'Tue', 'Sat'] },
-    { location: 'Chiredzi', days: ['Sun', 'Mon', 'Tue', 'Sat'] },
-    { location: 'Gutu', days: ['Sun', 'Mon', 'Tue', 'Sat'] },
-    { location: 'Nyika', days: ['Sun', 'Mon', 'Tue', 'Thu', 'Sat'] },
-    { location: 'Chipinge', days: ['Sun', 'Mon', 'Tue', 'Sat'] },
-    { location: 'Plumtree', days: ['Sun', 'Tue', 'Thu', 'Sat'] },
-    { location: 'Jerera', days: ['Sun', 'Tue', 'Thu', 'Sat'] },
-    { location: 'Chivi', days: ['Tue', 'Wed', 'Thu', 'Sat'] },
-    { location: 'Checheche', days: ['Sun', 'Tue', 'Wed', 'Thu', 'Sat'] },
-    { location: 'Inyanga', days: ['Sun', 'Tue', 'Thu', 'Sat'] },
+    { location: "Gokwe", days: ["Sun", "Mon", "Wed", "Sat"] },
+    { location: "Shurugwi", days: ["Sun", "Mon", "Wed", "Sat"] },
+    { location: "Zvishavane", days: ["Sun", "Mon", "Tue", "Sat"] },
+    { location: "Chiredzi", days: ["Sun", "Mon", "Tue", "Sat"] },
+    { location: "Gutu", days: ["Sun", "Mon", "Tue", "Sat"] },
+    { location: "Nyika", days: ["Sun", "Mon", "Tue", "Thu", "Sat"] },
+    { location: "Chipinge", days: ["Sun", "Mon", "Tue", "Sat"] },
+    { location: "Plumtree", days: ["Sun", "Tue", "Thu", "Sat"] },
+    { location: "Jerera", days: ["Sun", "Tue", "Thu", "Sat"] },
+    { location: "Chivi", days: ["Tue", "Wed", "Thu", "Sat"] },
+    { location: "Checheche", days: ["Sun", "Tue", "Wed", "Thu", "Sat"] },
+    { location: "Inyanga", days: ["Sun", "Tue", "Thu", "Sat"] },
   ];
 
   const depots = [
     {
-      name: 'Harare',
-      address: '15 Craster Road, Southerton',
-      phone: '+263 8677 007 007',
-      coverage: 'Central & Northern Zimbabwe',
-      features: ['Main Hub', 'Storage Facilities', '24/7 Security']
+      name: "Harare",
+      address: "15 Craster Road, Southerton",
+      phone: "+263 8677 007 007",
+      coverage: "Central & Northern Zimbabwe",
+      features: ["Main Hub", "Storage Facilities", "24/7 Security"],
     },
     {
-      name: 'Bulawayo',
-      address: 'Industrial Area',
-      phone: '+263 242 620 751',
-      coverage: 'Southern & Western Zimbabwe',
-      features: ['Regional Hub', 'Packing Services', 'Secure Parking']
+      name: "Bulawayo",
+      address: "Industrial Area",
+      phone: "+263 242 620 751",
+      coverage: "Southern & Western Zimbabwe",
+      features: ["Regional Hub", "Packing Services", "Secure Parking"],
     },
     {
-      name: 'Gweru',
-      address: 'Midlands Industrial Zone',
-      phone: '+263 8677 007 007',
-      coverage: 'Midlands Region',
-      features: ['Distribution Center', 'Freight Services', 'Cross-docking']
+      name: "Gweru",
+      address: "Midlands Industrial Zone",
+      phone: "+263 8677 007 007",
+      coverage: "Midlands Region",
+      features: ["Distribution Center", "Freight Services", "Cross-docking"],
     },
   ];
 
   const internationalOperations = [
-    { country: 'Tanzania', flag: '🇹🇿', route: 'Harare - Dar es Salaam' },
-    { country: 'Malawi', flag: '🇲🇼', route: 'Harare - Lilongwe' },
-    { country: 'Mozambique', flag: '🇲🇿', route: 'Harare - Maputo' },
-    { country: 'Zambia', flag: '🇿🇲', route: 'Harare - Lusaka' },
-    { country: 'South Africa', flag: '🇿🇦', route: 'Harare - Johannesburg' },
-    { country: 'Botswana', flag: '🇧🇼', route: 'Harare - Gaborone' },
-    { country: 'Namibia', flag: '🇳🇦', route: 'Harare - Windhoek' },
+    { country: "Tanzania", flag: "🇹🇿", route: "Harare - Dar es Salaam" },
+    { country: "Malawi", flag: "🇲🇼", route: "Harare - Lilongwe" },
+    { country: "Mozambique", flag: "🇲🇿", route: "Harare - Maputo" },
+    { country: "Zambia", flag: "🇿🇲", route: "Harare - Lusaka" },
+    { country: "South Africa", flag: "🇿🇦", route: "Harare - Johannesburg" },
+    { country: "Botswana", flag: "🇧🇼", route: "Harare - Gaborone" },
+    { country: "Namibia", flag: "🇳🇦", route: "Harare - Windhoek" },
   ];
 
-  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const currentSchedule = selectedFrequency === '6times' ? deliverySchedule6Times : deliverySchedule3Times;
+  const currentSchedule =
+    selectedFrequency === "6times"
+      ? deliverySchedule6Times
+      : deliverySchedule3Times;
 
   return (
     <div className="overflow-hidden">
@@ -95,22 +108,54 @@ export default function DeliveryNetwork() {
               className="flex justify-center mb-6"
             >
               <div className="flex flex-wrap gap-3 justify-center">
-                <Chip label="3 Depots" sx={{ bgcolor: '#EEC643', color: '#040F0F', fontWeight: 600, fontFamily: 'Gellix' }} />
-                <Chip label="Nationwide Coverage" sx={{ bgcolor: '#EEC643', color: '#040F0F', fontWeight: 600, fontFamily: 'Gellix' }} />
-                <Chip label="International Routes" sx={{ bgcolor: '#EEC643', color: '#040F0F', fontWeight: 600, fontFamily: 'Gellix' }} />
+                <Chip
+                  label="3 Depots"
+                  sx={{
+                    bgcolor: "#EEC643",
+                    color: "#040F0F",
+                    fontWeight: 600,
+                    fontFamily: "Gellix",
+                  }}
+                />
+                <Chip
+                  label="Nationwide Coverage"
+                  sx={{
+                    bgcolor: "#EEC643",
+                    color: "#040F0F",
+                    fontWeight: 600,
+                    fontFamily: "Gellix",
+                  }}
+                />
+                <Chip
+                  label="International Routes"
+                  sx={{
+                    bgcolor: "#EEC643",
+                    color: "#040F0F",
+                    fontWeight: 600,
+                    fontFamily: "Gellix",
+                  }}
+                />
               </div>
             </motion.div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
               Our <span className="text-accent-gold">Delivery Network</span>
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed">
-              Safe, reliable, and secure inter-city transport service across Zimbabwe and the SADC region
+              Safe, reliable, and secure inter-city transport service across
+              Zimbabwe and the SADC region
             </p>
           </motion.div>
         </div>
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+          <svg
+            viewBox="0 0 1440 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+              fill="white"
+            />
           </svg>
         </div>
       </section>
@@ -128,7 +173,8 @@ export default function DeliveryNetwork() {
               Our <span className="text-primary-green">Strategic Depots</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Three strategically located depots serving all cities and towns across Zimbabwe
+              Three strategically located depots serving all cities and towns
+              across Zimbabwe
             </p>
           </motion.div>
 
@@ -152,11 +198,16 @@ export default function DeliveryNetwork() {
                 <div className="p-6 space-y-4">
                   <div>
                     <div className="text-sm text-gray-500 mb-1">Address</div>
-                    <div className="font-medium text-gray-800">{depot.address}</div>
+                    <div className="font-medium text-gray-800">
+                      {depot.address}
+                    </div>
                   </div>
                   <div>
                     <div className="text-sm text-gray-500 mb-1">Contact</div>
-                    <a href={`tel:${depot.phone}`} className="font-medium text-primary-green hover:text-accent-gold transition-colors">
+                    <a
+                      href={`tel:${depot.phone}`}
+                      className="font-medium text-primary-green hover:text-accent-gold transition-colors"
+                    >
                       {depot.phone}
                     </a>
                   </div>
@@ -164,12 +215,12 @@ export default function DeliveryNetwork() {
                     <div className="text-sm text-gray-500 mb-2">Features</div>
                     <div className="flex flex-wrap gap-2">
                       {depot.features.map((feature) => (
-                        <Chip 
-                          key={feature} 
-                          label={feature} 
-                          size="small" 
+                        <Chip
+                          key={feature}
+                          label={feature}
+                          size="small"
                           icon={<CheckCircle size={14} />}
-                          sx={{ bgcolor: '#F3F4F6', fontFamily: 'Gellix' }} 
+                          sx={{ bgcolor: "#F3F4F6", fontFamily: "Gellix" }}
                         />
                       ))}
                     </div>
@@ -194,27 +245,28 @@ export default function DeliveryNetwork() {
               <span className="text-primary-green">Delivery Schedule</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-              Regular, reliable delivery services to destinations across Zimbabwe
+              Regular, reliable delivery services to destinations across
+              Zimbabwe
             </p>
 
             {/* Frequency Toggle */}
             <div className="inline-flex bg-white rounded-full p-1 shadow-md">
               <button
-                onClick={() => setSelectedFrequency('6times')}
+                onClick={() => setSelectedFrequency("6times")}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  selectedFrequency === '6times'
-                    ? 'bg-primary-green text-white shadow-lg'
-                    : 'text-gray-600 hover:text-primary-green'
+                  selectedFrequency === "6times"
+                    ? "bg-primary-green text-white shadow-lg"
+                    : "text-gray-600 hover:text-primary-green"
                 }`}
               >
                 6 Times a Week
               </button>
               <button
-                onClick={() => setSelectedFrequency('3times')}
+                onClick={() => setSelectedFrequency("3times")}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  selectedFrequency === '3times'
-                    ? 'bg-primary-green text-white shadow-lg'
-                    : 'text-gray-600 hover:text-primary-green'
+                  selectedFrequency === "3times"
+                    ? "bg-primary-green text-white shadow-lg"
+                    : "text-gray-600 hover:text-primary-green"
                 }`}
               >
                 3 Times a Week
@@ -235,9 +287,14 @@ export default function DeliveryNetwork() {
                 <table className="w-full">
                   <thead>
                     <tr className="bg-primary-dark text-white">
-                      <th className="px-6 py-4 text-left font-semibold">Location</th>
+                      <th className="px-6 py-4 text-left font-semibold">
+                        Location
+                      </th>
                       {daysOfWeek.map((day) => (
-                        <th key={day} className="px-4 py-4 text-center font-semibold">
+                        <th
+                          key={day}
+                          className="px-4 py-4 text-center font-semibold"
+                        >
                           {day}
                         </th>
                       ))}
@@ -263,7 +320,10 @@ export default function DeliveryNetwork() {
                             {item.days.includes(day) ? (
                               <div className="flex justify-center">
                                 <div className="w-8 h-8 bg-primary-green rounded-full flex items-center justify-center">
-                                  <CheckCircle size={16} className="text-white" />
+                                  <CheckCircle
+                                    size={16}
+                                    className="text-white"
+                                  />
                                 </div>
                               </div>
                             ) : (
@@ -288,12 +348,18 @@ export default function DeliveryNetwork() {
             className="mt-8 bg-accent-gold/10 border-l-4 border-accent-gold rounded-lg p-6"
           >
             <div className="flex items-start space-x-3">
-              <Clock size={24} className="text-primary-green flex-shrink-0 mt-1" />
+              <Clock
+                size={24}
+                className="text-primary-green flex-shrink-0 mt-1"
+              />
               <div>
-                <h4 className="font-bold text-primary-dark mb-2">Delivery Information</h4>
+                <h4 className="font-bold text-primary-dark mb-2">
+                  Delivery Information
+                </h4>
                 <p className="text-gray-700">
-                  All deliveries are made during business hours. For specific delivery times or to track your shipment, 
-                  please contact your nearest depot. Express services available upon request.
+                  All deliveries are made during business hours. For specific
+                  delivery times or to track your shipment, please contact your
+                  nearest depot. Express services available upon request.
                 </p>
               </div>
             </div>
@@ -328,14 +394,25 @@ export default function DeliveryNetwork() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 card-hover"
               >
-                <div className="text-5xl mb-4 text-center">{operation.flag}</div>
-                <h3 className="text-xl font-bold text-center mb-2">{operation.country}</h3>
-                <p className="text-sm text-gray-200 text-center">{operation.route}</p>
+                <div className="text-5xl mb-4 text-center">
+                  {operation.flag}
+                </div>
+                <h3 className="text-xl font-bold text-center mb-2">
+                  {operation.country}
+                </h3>
+                <p className="text-sm text-gray-200 text-center">
+                  {operation.route}
+                </p>
                 <div className="mt-4 flex justify-center">
-                  <Chip 
-                    label="Active Route" 
-                    size="small" 
-                    sx={{ bgcolor: '#EEC643', color: '#040F0F', fontWeight: 600, fontFamily: 'Gellix' }} 
+                  <Chip
+                    label="Active Route"
+                    size="small"
+                    sx={{
+                      bgcolor: "#EEC643",
+                      color: "#040F0F",
+                      fontWeight: 600,
+                      fontFamily: "Gellix",
+                    }}
                   />
                 </div>
               </motion.div>
@@ -348,7 +425,10 @@ export default function DeliveryNetwork() {
             viewport={{ once: true }}
             className="mt-12 text-center"
           >
-            <a href="/services/freight" className="inline-flex items-center bg-accent-gold text-primary-dark px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <a
+              href="/services/freight"
+              className="inline-flex items-center bg-accent-gold text-primary-dark px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
               Learn More About Freight Services
               <ArrowRight size={20} className="ml-2" />
             </a>
@@ -363,23 +443,26 @@ export default function DeliveryNetwork() {
             {[
               {
                 icon: <Truck size={40} />,
-                title: 'Modern Fleet',
-                description: 'All vehicles equipped with satellite tracking for real-time monitoring'
+                title: "Modern Fleet",
+                description:
+                  "All vehicles equipped with satellite tracking for real-time monitoring",
               },
               {
                 icon: <Package size={40} />,
-                title: 'Safe Handling',
-                description: 'Professional packing and handling of all goods'
+                title: "Safe Handling",
+                description: "Professional packing and handling of all goods",
               },
               {
                 icon: <Clock size={40} />,
-                title: 'On-Time Delivery',
-                description: 'Reliable schedules with guaranteed delivery times'
+                title: "On-Time Delivery",
+                description:
+                  "Reliable schedules with guaranteed delivery times",
               },
               {
                 icon: <CheckCircle size={40} />,
-                title: 'Fully Insured',
-                description: 'Comprehensive insurance coverage for all shipments'
+                title: "Fully Insured",
+                description:
+                  "Comprehensive insurance coverage for all shipments",
               },
             ].map((feature, index) => (
               <motion.div
@@ -393,13 +476,25 @@ export default function DeliveryNetwork() {
                 <div className="w-20 h-20 bg-gradient-to-br from-primary-green to-primary-dark rounded-full flex items-center justify-center mx-auto mb-4 text-white">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold text-primary-dark mb-2">{feature.title}</h3>
+                <h3 className="text-xl font-bold text-primary-dark mb-2">
+                  {feature.title}
+                </h3>
                 <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+      <motion.button
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-green-600 to-primary-dark text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition z-40"
+      >
+        ↑
+      </motion.button>
     </div>
   );
 }

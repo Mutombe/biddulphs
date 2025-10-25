@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
-import { toast } from 'sonner';
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success('Message sent successfully! We\'ll get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    toast.success("Message sent successfully! We'll get back to you soon.");
+    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
   };
 
   const handleChange = (e) => {
@@ -25,28 +25,28 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: <Phone size={24} />,
-      title: 'Phone',
-      details: ['+263 8677 007 007', '+263 242 620 751'],
-      link: 'tel:+2638677007007'
+      title: "Phone",
+      details: ["+263 8677 007 007", "+263 242 620 751"],
+      link: "tel:+2638677007007",
     },
     {
       icon: <Mail size={24} />,
-      title: 'Email',
-      details: ['enquiries@biddulphs.net'],
-      link: 'mailto:enquiries@biddulphs.net'
+      title: "Email",
+      details: ["enquiries@biddulphs.net"],
+      link: "mailto:enquiries@biddulphs.net",
     },
     {
       icon: <MapPin size={24} />,
-      title: 'Address',
-      details: ['15 Craster Road', 'Southerton, Harare', 'Zimbabwe'],
-      link: null
+      title: "Address",
+      details: ["15 Craster Road", "Southerton, Harare", "Zimbabwe"],
+      link: null,
     },
     {
       icon: <Clock size={24} />,
-      title: 'Hours',
-      details: ['Mon-Fri: 7:30 AM - 5:00 PM', 'Sat: 8:00 AM - 12:00 PM'],
-      link: null
-    }
+      title: "Hours",
+      details: ["Mon-Fri: 7:30 AM - 5:00 PM", "Sat: 8:00 AM - 12:00 PM"],
+      link: null,
+    },
   ];
 
   return (
@@ -54,7 +54,10 @@ export default function Contact() {
       <section className="relative bg-gradient-to-br from-primary-dark via-primary-green to-primary-dark text-white py-20 md:py-32">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative container-custom text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
               Contact <span className="text-accent-gold">Us</span>
             </h1>
@@ -74,10 +77,14 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-display font-bold text-primary-dark mb-6">Send Us a Message</h2>
+              <h2 className="text-3xl font-display font-bold text-primary-dark mb-6">
+                Send Us a Message
+              </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Full Name *
+                  </label>
                   <input
                     type="text"
                     name="name"
@@ -89,7 +96,9 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email *
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -101,7 +110,9 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone
+                  </label>
                   <input
                     type="tel"
                     name="phone"
@@ -112,7 +123,9 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Subject *
+                  </label>
                   <input
                     type="text"
                     name="subject"
@@ -124,7 +137,9 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Message *
+                  </label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -135,7 +150,10 @@ export default function Contact() {
                     placeholder="Tell us more about your needs..."
                   />
                 </div>
-                <button type="submit" className="btn-primary w-full inline-flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="btn-primary w-full inline-flex items-center justify-center"
+                >
                   <Send size={20} className="mr-2" />
                   Send Message
                 </button>
@@ -148,7 +166,9 @@ export default function Contact() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-display font-bold text-primary-dark mb-6">Get In Touch</h2>
+              <h2 className="text-3xl font-display font-bold text-primary-dark mb-6">
+                Get In Touch
+              </h2>
               <div className="space-y-6">
                 {contactInfo.map((info, i) => (
                   <motion.div
@@ -163,11 +183,18 @@ export default function Contact() {
                       {info.icon}
                     </div>
                     <div>
-                      <h3 className="font-bold text-primary-dark mb-2">{info.title}</h3>
+                      <h3 className="font-bold text-primary-dark mb-2">
+                        {info.title}
+                      </h3>
                       {info.details.map((detail, j) => (
                         <p key={j} className="text-gray-600">
                           {info.link && j === 0 ? (
-                            <a href={info.link} className="hover:text-primary-green transition-colors">{detail}</a>
+                            <a
+                              href={info.link}
+                              className="hover:text-primary-green transition-colors"
+                            >
+                              {detail}
+                            </a>
                           ) : (
                             detail
                           )}
@@ -179,9 +206,16 @@ export default function Contact() {
               </div>
 
               <div className="mt-8 bg-gradient-to-br from-primary-green to-primary-dark text-white p-6 rounded-xl">
-                <h3 className="text-xl font-bold mb-3">Need Immediate Assistance?</h3>
-                <p className="text-gray-200 mb-4">Call us now for urgent inquiries</p>
-                <a href="tel:+2638677007007" className="btn-primary bg-accent-gold text-primary-dark hover:bg-opacity-90 inline-flex items-center">
+                <h3 className="text-xl font-bold mb-3">
+                  Need Immediate Assistance?
+                </h3>
+                <p className="text-gray-200 mb-4">
+                  Call us now for urgent inquiries
+                </p>
+                <a
+                  href="tel:+2638677007007"
+                  className="btn-primary bg-accent-gold text-primary-dark hover:bg-opacity-90 inline-flex items-center"
+                >
                   <Phone size={20} className="mr-2" />
                   Call Now
                 </a>
@@ -204,6 +238,16 @@ export default function Contact() {
           title="Biddulphs Location"
         />
       </section>
+      <motion.button
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-green-600 to-primary-dark text-white rounded-full shadow-lg flex items-center justify-center hover:shadow-xl transition z-40"
+      >
+        ↑
+      </motion.button>
     </div>
   );
 }
